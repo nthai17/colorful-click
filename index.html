@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorful Click</title>
+    <style>
+        #root{
+            width: 900px;
+            margin: 200px auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        .box{
+            height: 200px;
+            width: 200px;
+            border-radius: 10px;
+            border: 1px solid black
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+    <script>
+        const colors = ['#dd2525', '#9add25', '#14bb0e', '#0ebb98', '#0fa4e5', '#0f1ae5', '#ac0fe5', '#e50f8a', '#e50f1d']
+        let boxList = document.querySelectorAll('.box')
+        let currentIndex ;
+        function getColor(){
+            let newCurrenIndex
+            do (newCurrentIndex = Math.floor(Math.random()*colors.length))
+            while(newCurrentIndex === currentIndex)
+            currentIndex = newCurrentIndex
+            return colors.find((color, index)=>{
+                return index === currentIndex
+            })
+        }
+        boxList.forEach((box)=>{
+            box.onclick = (e)=>{
+                let color = getColor()
+                e.target.style.backgroundColor = color
+            }
+        })
+    </script>
+</body>
+</html>
